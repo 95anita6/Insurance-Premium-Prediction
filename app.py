@@ -10,7 +10,6 @@ import logging
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
-model = joblib.load('insurance_premium_perdiction.pkl')
 
 class CategoricalEncoding(BaseEstimator, TransformerMixin):
     
@@ -87,4 +86,5 @@ def predict():
     return render_template("home.html")
 
 if __name__ == "__main__":
+    model = joblib.load('insurance_premium_perdiction.pkl')
     app.run(debug=True)
