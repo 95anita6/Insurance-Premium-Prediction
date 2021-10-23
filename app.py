@@ -20,7 +20,7 @@ class CategoricalEncoding(BaseEstimator, TransformerMixin):
         return self
             
     def transform(self, X):
-        app.logging.info('<------Encoding Categorical variables------>')
+        app.logger.info('<------Encoding Categorical variables------>')
         X_ = X.copy()
         X_['sex_male'] = np.where(X_['sex']=='male',1,0)
         X_['smoker_yes'] = np.where(X_['smoker']=='yes',1,0)
@@ -39,7 +39,7 @@ class OutlierTreatment(BaseEstimator, TransformerMixin):
         return self
             
     def transform(self,X):
-        app.logging.info('<------Treating Outliers------>')
+        app.logger.info('<------Treating Outliers------>')
         X_ = X.copy()
         tenth_percentile = np.percentile(X_['bmi'], 10)
         ninetieth_percentile = np.percentile(X_['bmi'], 90)
@@ -49,12 +49,12 @@ class OutlierTreatment(BaseEstimator, TransformerMixin):
 
 @app.route("/")
 def home():
-    app.logging.info('<------Loading home page------>')
+    app.logger.info('<------Loading home page------>')
     return render_template("home.html")
 
 @app.route("/predict", methods = ["GET", "POST"])
 def predict():
-    app.logging.info('<------Using model to predict the premium------>')
+    app.logger.info('<------Using model to predict the premium------>')
     if request.method == "POST":
 
         # Age
@@ -80,7 +80,7 @@ def predict():
         prediction=model.predict(data)
 
         output=np.round(np.exp(prediction[0]),2)
-        app.logging.info('<------Returning predicted output------>')
+        app.logger.info('<------Returning predicted output------>')
         return render_template('home.html',prediction="Your estimated health insurance premium is {} $".format(output))
 
     return render_template("home.html")
