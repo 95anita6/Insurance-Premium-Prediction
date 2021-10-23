@@ -1,0 +1,139 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Insurance Premium Prediction</title>  
+    
+    <style>
+        html,body 
+        { 
+            width: 100%; height: 100%; 
+        }
+        body
+        { 
+            background-image: url({{ url_for('static', filename='img/image2.jpg') }});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-transperency:20%;
+        }
+        table{
+            font-size: 20px;
+            font-family: Monospace;
+        }
+        h4{
+            font-family: cursive;
+            color: navy;
+        }
+        p {
+            color: navy;
+            text-transform: uppercase;
+            font-size: 35px;
+            font-family: Monospace;
+        }
+        input[type=text] {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=number] {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            background-color: #8585ad;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        select {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+    
+</head>
+
+<body>    
+    <!-- As a heading --> 
+    <p align='center' title='Click to reset values or calculate again'><a href="/">HEALTH INSURANCE PREMIUM PREDICTOR</a></p> 
+    
+    <form action="\predict" method="post">
+        
+        <!-- Prediction value -->
+        <table>
+            <tr>
+                <td><h4>{{ prediction }}</h4></td>
+            </tr>
+        </table>
+        
+        <table>
+            
+            <tr>
+                <td>Your Age :</td> 
+                <td><input type="number" name="Age" id="Age" required="required", min="15"></td>
+            </tr>
+            <tr>
+                <td>Your Gender :</td> 
+                <td>
+                    <select name="Gender" id="Gender" required="required"> 
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Your BMI :</td> 
+                <td><input type="number" name="bmi" id="bmi" step="any" required="required"></td>
+            </tr>
+            <tr>
+                <td>Number of children :</td> 
+                <td><input type="number" name="Children" id="Children" required="required"></td>
+            </tr>
+            <tr>
+                <td>Are you a smoker :</td> 
+                <td>
+                    <select name="Smoker" id="Smoker" required="required"> 
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Your Region :</td> 
+                <td>
+                    <select name="Region" id="Region" required="required"> 
+                        <option value="southeast">Southeast</option>
+                        <option value="southwest">Southwest</option>
+                        <option value="northeast">Northeast</option>
+                        <option value="northwest">Northwest</option>   
+                    </select>
+                </td>
+            </tr>
+            
+        </table>
+        <!-- Submit -->
+        <p><input type="submit" value="Check Premium" class="btn btn-secondary"></p>
+        
+    </form>
+        
+</body>
+</html>
